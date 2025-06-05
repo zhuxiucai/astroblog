@@ -5,6 +5,9 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-	site: 'https://example.com',
+	site: 'https://blog.alotus.com.cn',
 	integrations: [mdx(), sitemap()],
-});
+	server: {
+		host: '0.0.0.0'	
+	}
+})

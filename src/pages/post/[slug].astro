@@ -1,27 +1,58 @@
 ---
 import { ghostClient } from '../../lib/ghost';
-
 export async function getStaticPaths() {
-    const posts = await ghostClient.posts
-        .browse({
-            limit: 'all',
-        })
-        .catch((err) => {
-            console.error(err);
-        });
-
-    return posts.map((post) => {
-        return {
-            params: {
-                slug: post.slug,
-            },
-            props: {
-                post: post,
-            },
-        };
+    console.log('=== Starting getStaticPaths ===');
+    console.log('Ghost Client Config:', {
+        url: ghostClient.url,
+        key: ghostClient.key ? `${ghostClient.key.substring(0, 10)}...` : 'undefined',
+        version: ghostClient.version
     });
+    try {
+        console.log('Fetching posts from Ghost...');
+        
+        const posts = await ghostClient.posts.browse({
+            limit: 'all',
+        });
+        console.log('Raw response:', typeof posts, posts);
+        console.log('Posts array:', Array.isArray(posts));
+        console.log('Posts length:', posts?.length);
+        if (!posts) {
+            console.error('Posts is null or undefined');
+            return [];
+        }
+        if (!Array.isArray(posts)) {
+            console.error('Posts is not an array:', typeof posts);
+            return [];
+        }
+        const paths = posts.map((post, index) => {
+            console.log(`Post ${index}:`, { slug: post.slug, title: post.title });
+            return {
+                params: {
+                    slug: post.slug,
+                },
+                props: {
+                    post: post,
+                },
+            };
+        });
+        console.log('Generated paths count:', paths.length);
+        return paths;
+    } catch (error) {
+        console.error('Error in getStaticPaths:', error);
+        console.error('Error message:', error.message);
+        console.error('Error stack:', error.stack);
+        return [];
+    }
 }
-
 const { post } = Astro.props;
 ---
-
+<!-- 你的 HTML 模板 -->
+<html>
+<head>
+    <title>{post.title}</title>
+</head>
+<body>
+    <h1>{post.title}</h1>
+    <div set:html={post.html}></div>
+</body>
+</html>

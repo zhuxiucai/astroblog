@@ -6,9 +6,9 @@ export const themeConfig: ThemeConfig = {
     // site title
     title: 'Beyond Models',
     // site subtitle
-    subtitle: 'Revive the beauty of typography',
+    subtitle: 'Explore the intersection of models and humanities',
     // site description
-    description: 'Retypeset is a static blog theme based on the Astro framework. Inspired by Typography, Retypeset establishes a new visual standard and reimagines the layout of all pages, creating a reading experience reminiscent of paper books, reviving the beauty of typography. Details in every sight, elegance in every space.',
+    description: '模型之外'
     // use i18n title/subtitle/description from src/i18n/ui.ts instead of static ones above
     i18nTitle: true, // true, false
     // author name
@@ -133,7 +133,7 @@ export const themeConfig: ThemeConfig = {
     follow: {
       // feed ID
       feedID: '',
-      // user ID
+      // user IDhttps://analytics.google.com
       userID: '',
     },
     // apiflash access key
@@ -157,7 +157,7 @@ export const themeConfig: ThemeConfig = {
       },
       {
         name: 'Email',
-        url: 'email@radishzz.cc',
+        url: '',
       },
       // {
       //   name: 'X',

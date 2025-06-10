@@ -8,7 +8,7 @@ export const themeConfig: ThemeConfig = {
     // site subtitle
     subtitle: 'Explore the intersection of models and humanities',
     // site description
-    description: '模型之外'
+    description: '模型之外',
     // use i18n title/subtitle/description from src/i18n/ui.ts instead of static ones above
     i18nTitle: true, // true, false
     // author name
